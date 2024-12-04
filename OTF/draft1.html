@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>family of bears</title>
+  <style>
+    @font-face {
+      font-family: EpiceneDisplay;
+      src: url('otf/EpiceneDisplay-Light.otf') format('opentype');
+      font-weight: lighter;
+    }
+
+    body {
+      font: EpiceneDisplay;
+      background-color: #7b7b7b;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    #direction-container,
+    .circle-container {
+      width: 100%;
+      max-width: 800px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #direction {
+      font-size: 25vh;
+      margin-bottom: 20%;
+      opacity: 0;
+      position: relative;
+      color: #faf9f6;
+    }
+
+    .circle {
+      background-color: transparent;
+      width: 6vh;
+      height: 6vh;
+      max-width: 5vh;
+      max-height: 5vh;
+      border-radius: 50%;
+      animation: breathe 4s infinite alternate;
+      box-shadow: 0 0 20px rgba(250, 249, 246, 0.5);
+      margin-bottom: 10px;
+    }
+
+    @keyframes breathe {
+      0% {
+        transform: scale(1);
+      }
+      100% {
+        transform: scale(2);
+      }
+    }
+
+    button {
+      display: none;
+    }
+
+    sup {
+      position: absolute;
+      top: -0.8rem;
+      right: -0.8rem;
+      background-color: transparent;
+      padding: 0.2rem 0.5rem;
+      border-radius: 50%;
+      font-size: 0.8rem;
+      color: #faf9f6;
+      box-shadow: 0 0 20px rgba(250, 249, 246, 0.8);
+    }
+
+    .fade-in-text {
+      animation: fadeInText 3s forwards;
+    }
+
+    @keyframes fadeInText {
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @media (min-width: 600px) {
+      .container {
+        flex-direction: row;
+      }
+
+      #direction-container,
+      .circle-container {
+        width: 50%;
+      }
+
+      #direction {
+        font-size: 20vh;
+        margin-bottom: 0;
+      }
+
+      .circle {
+        margin-bottom: 20px;
+      }
+    }
+
+    @media (min-width: 1080px) {
+      #direction {
+        font-size: 40vh;
+      }
+
+      .circle {
+        width: 7vh;
+        height: 7vh;
+      }
+    }
+
+    .footer {
+      font: EpiceneDisplay;
+      font-size: 2.5vh;
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      z-index: -1;
+      animation: footerAnimation 30s infinite;
+
+
+    }
+p.one {
+     word-spacing: -3px;
+   }
+
+    @keyframes footerAnimation {
+      0%,
+      100% {
+        color: dimgrey;
+      }
+
+      50% {
+        color: #faf9f6;
+      }
+    }
+
+    .code {
+      font-size: 1.5vh;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div id="direction-container">
+      <div id="direction"></div>
+    </div>
+    <div class="circle-container">
+      <div class="circle" onclick="generateDirection()"></div>
+    </div>
+  </div>
+
+    <div class="footer">
+    <p class="one">Lila,  larry,  zebleer,  glass,  pax,  lotus,  era <br>
+    yumyulack,  time,  lilac,  balenciaga,  x—23  danuta  ivory—ice,  silicon </p>
+    </div>
+  </div>
+
+  <script>
+    let previousDirection = '';
+    let directionCount = 2; // Start counter at 2
+
+    function generateDirection() {
+      const directions = ['↔', '↕'];
+      let randomIndex = Math.floor(Math.random() * directions.length);
+      let randomDirection = directions[randomIndex];
+
+      if (randomDirection === previousDirection) {
+        randomDirection += `<sup>${directionCount}</sup>`;
+        directionCount++;
+      } else {
+        previousDirection = randomDirection;
+        directionCount = 2; // Reset counter to 2
+      }
+
+      const directionElement = document.getElementById('direction');
+      directionElement.innerHTML = randomDirection;
+      directionElement.classList.remove('fade-in-text');
+      setTimeout(() => {
+        directionElement.classList.add('fade-in-text');
+      }, 100);
+    }
+
+    // Generate a random direction when the page loads
+    window.onload = generateDirection;
+
+    // Add event listener for spacebar key press
+    document.addEventListener('keydown', function(event) {
+      if (event.code === 'Space') {
+        event.preventDefault();
+        generateDirection();
+      }
+    });
+  </script>
+</body>
+
+</html>
