@@ -12,15 +12,36 @@
       font-weight: lighter;
     }
 
-    body {
-      font: EpiceneDisplay;
-      background-color: #dad3e5;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
+ body {
+  font: EpiceneDisplay;
+  background-color: #dad3e5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  animation: backgroundCycle 40s infinite linear; /* Slowed down to 40s */
+}
+
+@keyframes backgroundCycle {
+  0% {
+    background-color: #dad3e5;
+  }
+  25% {
+    background-color: #ffa9d6;
+  }
+  50% {
+    background-color: #990011;
+  }
+  75% {
+    background-color: #301A89; /* New color */
+  }
+  100% {
+    background-color: #dad3e5;
+  }
+}
+
+
 
     .container {
       width: 100%;
@@ -154,7 +175,7 @@ p.one {
       }
 
       50% {
-        color: #faf9f6;
+        color: #990011;
       }
     }
 
