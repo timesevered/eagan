@@ -12,36 +12,34 @@
       font-weight: lighter;
     }
 
- body {
-  font: EpiceneDisplay;
-  background-color: #dad3e5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-  animation: backgroundCycle 40s infinite linear; /* Slowed down to 40s */
-}
+    body {
+      font: EpiceneDisplay;
+      background-color: #dad3e5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      animation: backgroundCycle 40s infinite linear;
+    }
 
-@keyframes backgroundCycle {
-  0% {
-    background-color: #dad3e5;
-  }
-  25% {
-    background-color: #ffa9d6;
-  }
-  50% {
-    background-color: #990011;
-  }
-  75% {
-    background-color: #301A89; /* New color */
-  }
-  100% {
-    background-color: #dad3e5;
-  }
-}
-
-
+    @keyframes backgroundCycle {
+      0% {
+        background-color: #dad3e5;
+      }
+      25% {
+        background-color: #ffa9d6;
+      }
+      50% {
+        background-color: #990011;
+      }
+      75% {
+        background-color: #301A89;
+      }
+      100% {
+        background-color: #dad3e5;
+      }
+    }
 
     .container {
       width: 100%;
@@ -114,7 +112,6 @@
       0% {
         opacity: 0;
       }
-
       100% {
         opacity: 1;
       }
@@ -162,19 +159,17 @@
       text-align: center;
       z-index: -1;
       animation: footerAnimation 30s infinite;
-
-
     }
-p.one {
-     word-spacing: -1px;
-   }
+
+    p.one {
+      word-spacing: -1px;
+    }
 
     @keyframes footerAnimation {
       0%,
       100% {
         color: #ffa9d6;
       }
-
       50% {
         color: #990011;
       }
@@ -182,6 +177,20 @@ p.one {
 
     .code {
       font-size: 1.5vh;
+    }
+
+    /* Countdown Timer Styling */
+    .countdown {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      font-size: 3vw;
+      font: EpiceneDisplay;
+      color: #faf9f6;
+      opacity: 0.8;
+      z-index: -1;
+      word-spacing: -1px;
+
     }
   </style>
 </head>
@@ -196,19 +205,21 @@ p.one {
     </div>
   </div>
 
-    <div class="footer">
+  <div class="footer">
     <p class="one">Lili—Yumyulack Thyme Kerttu \ Kärt Sever Āki <br>
-                    Larry—Kləopatra Scärlët Kæli Amīna Worm•e <br>
-                    Zeb•e—Silicon Xylitol Time Oona Makvala  <br>
-                    Knuck•e—Balenciaga Eaarth Rykkur Oola <br>
-                    Pax•e—Valerie \ Valley Božo Bellflower Ivory Draco x—22 <br>
-                    Loti + e—Lilac Khaleesi—Cordelia Truffle </p>
-    </div>
+      Larry—Kləopatra Scärlët Kæli Amīna Worm•e <br>
+      Zeb•e—Silicon Xylitol Time Oona Makvala <br>
+      Knuck•e—Balenciaga Eaarth Rykkur Oola <br>
+      Pax•e—Valerie \ Valley Božo Bellflower Ivory Draco x—22 <br>
+      Loti + e—Lilac Khaleesi—Cordelia Truffle </p>
   </div>
+
+  <!-- Countdown Timer -->
+  <div class="countdown" id="countdown"></div>
 
   <script>
     let previousDirection = '';
-    let directionCount = 2; // Start counter at 2
+    let directionCount = 2;
 
     function generateDirection() {
       const directions = ['↔', '↕'];
@@ -220,7 +231,7 @@ p.one {
         directionCount++;
       } else {
         previousDirection = randomDirection;
-        directionCount = 2; // Reset counter to 2
+        directionCount = 2;
       }
 
       const directionElement = document.getElementById('direction');
@@ -231,16 +242,38 @@ p.one {
       }, 100);
     }
 
-    // Generate a random direction when the page loads
     window.onload = generateDirection;
 
-    // Add event listener for spacebar key press
     document.addEventListener('keydown', function(event) {
       if (event.code === 'Space') {
         event.preventDefault();
         generateDirection();
       }
     });
+
+    // Countdown Timer Functionality
+    function updateCountdown() {
+      const targetDate = new Date("March 29, 2025 12:07:00").getTime();
+      const now = new Date().getTime();
+      const timeDiff = targetDate - now;
+
+      if (timeDiff < 0) {
+        document.getElementById("countdown").innerHTML = "Countdown expired";
+        return;
+      }
+
+      const weeks = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 7));
+      const days = Math.floor((timeDiff % (1000 * 60 * 60 * 24 * 7)) / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML = 
+        `${weeks}w ${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
   </script>
 </body>
 
