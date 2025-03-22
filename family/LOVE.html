@@ -245,11 +245,11 @@
     window.onload = generateDirection;
 
     document.addEventListener('keydown', function(event) {
-      if (event.code === 'Space') {
-        event.preventDefault();
-        generateDirection();
-      }
-    });
+  if (event.key === 'Enter') { // Change to 'Enter' key
+    event.preventDefault();
+    generateDirection();
+  }
+});
 
     // Countdown Timer Functionality
     function updateCountdown() {
