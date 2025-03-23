@@ -60,8 +60,8 @@
     }
 
     #direction {
-      font-size: 25vh;
-      margin-bottom: 20%;
+      font-size: 30vh;
+      margin-bottom: 30%;
       opacity: 0;
       position: relative;
       color: #faf9f6;
@@ -117,73 +117,17 @@
       }
     }
 
-    @media (min-width: 600px) {
-      .container {
-        flex-direction: row;
-      }
 
-      #direction-container,
-      .circle-container {
-        width: 50%;
-      }
 
-      #direction {
-        font-size: 20vh;
-        margin-bottom: 0;
-      }
+   
 
-      .circle {
-        margin-bottom: 20px;
-      }
-    }
-
-    @media (min-width: 1080px) {
-      #direction {
-        font-size: 40vh;
-      }
-
-      .circle {
-        width: 7vh;
-        height: 7vh;
-      }
-    }
-
-    .footer {
-      font: EpiceneDisplay;
-      font-size: 2vw;
-      position: fixed;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      margin: 5px;
-      text-align: center;
-      z-index: -1;
-      animation: footerAnimation 30s infinite;
-    }
-
-    p.one {
-      word-spacing: -1px;
-    }
-
-    @keyframes footerAnimation {
-      0%,
-      100% {
-        color: #ffa9d6;
-      }
-      50% {
-        color: #990011;
-      }
-    }
-
-    .code {
-      font-size: 1.5vh;
-    }
+ 
 
     /* Countdown Timer Styling */
     .countdown {
       position: fixed;
-      top: 10px;
-      right: 10px;
+      top: 20px;
+      left: 20px;
       font-size: 3vw;
       font: EpiceneDisplay;
       color: #faf9f6;
@@ -191,6 +135,39 @@
       z-index: -1;
       word-spacing: -1px;
 
+    }
+
+
+
+     .grid-container {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100vw;
+      height: 100vh;
+      gap: 10px;
+    }
+    .grid-item {
+      flex: 1 1 calc(33.333% - 10px);
+      background-color: transparent;
+      font-family: EpiceneDisplay;
+      color: #faf9f6;
+      padding: 20px;
+      text-align: center;
+      border-radius: 0;
+      box-shadow: none;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      white-space: normal;
+    }
+    @media (max-width: 768px) {
+      .grid-item {
+        flex: 1 1 calc(50% - 10px);
+      }
+    }
+    @media (max-width: 480px) {
+      .grid-item {
+        flex: 1 1 100%;
+      }
     }
   </style>
 </head>
@@ -205,14 +182,23 @@
     </div>
   </div>
 
-  <div class="footer">
-    <p class="one">Lili—Yumyulack Thyme Kerttu \ Kärt Eaarth Āki <br>
-      Larry Ishtar—Kləopatra <br> Scärlët Ishtar Moonlight Kæli Amīna <br>
-      Zeb•e—Silicon Xylitol Rykkur Oona Makvala <br>
-      Knuck•e—Balenciaga Worm•e Oola Sever Time <br>
-      Pax•e—Valerie \ Valley <br> Božo Bellflower Ivory Draco x—22 <br>
-      Loti + e—Lilac Khaleesi—Cordelia Rogu Truffle </p>
+
+
+
+
+ <div class="grid-container">
+    <div class="grid-item">Lili—Yumyulack Thyme Kerttu \ Kärt Eaarth Āki</div>
+    <div class="grid-item">Larry Ishtar—Kləopatra Scärlët Ishtar Moonlight Kæli Amīna</div>
+    <div class="grid-item">Zeb•e—Silicon Xylitol Rykkur Oona Makvala</div>
+    <div class="grid-item">Knuck•e—Balenciaga Worm•e Oola Sever Time</div>
+    <div class="grid-item">Pax•e—Valerie \ Valley Božo Bellflower Ivory Draco x—22</div>
+    <div class="grid-item">Loti + e—Lilac Khaleesi—Cordelia Rogu Truffle</div>
   </div>
+
+
+
+
+
 
   <!-- Countdown Timer -->
   <div class="countdown" id="countdown"></div>
