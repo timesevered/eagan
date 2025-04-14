@@ -184,11 +184,17 @@
     window.onload = generateDirection;
 
     document.addEventListener('keydown', function(event) {
-  if (event.key === 'Enter') { // Change to 'Enter' key
+  if (event.key === 'Enter') {
     event.preventDefault();
     generateDirection();
   }
 });
+
+// Trigger on any click or touch
+document.body.addEventListener('click', generateDirection);
+document.body.addEventListener('touchstart', generateDirection);
+
+  ;
 
     // Countdown Timer Functionality
     function updateCountdown() {
