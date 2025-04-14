@@ -143,9 +143,7 @@
     <div id="direction-container">
       <div id="direction"></div>
     </div>
-    <div class="circle-container">
-      <div class="circle" onclick="generateDirection()"></div>
-    </div>
+    
   </div>
 
 
@@ -183,18 +181,17 @@
 
     window.onload = generateDirection;
 
-    document.addEventListener('keydown', function(event) {
-  if (event.key === 'Enter') {
-    event.preventDefault();
-    generateDirection();
-  }
+  // Trigger on any key press (desktop)
+document.addEventListener('keydown', function(event) {
+  event.preventDefault();  // Prevent the default action for any key
+  generateDirection();
 });
 
-// Trigger on any click or touch
+// Trigger on any click or touch (mobile and desktop)
 document.body.addEventListener('click', generateDirection);
 document.body.addEventListener('touchstart', generateDirection);
 
-  ;
+  
 
     // Countdown Timer Functionality
     function updateCountdown() {
