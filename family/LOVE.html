@@ -141,19 +141,7 @@
 
     
 
-    /* Countdown Timer Styling */
-    .countdown {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      font-size: 8vw;
-      font: EpiceneDisplay;
-      color: #faf9f6;
-  
-      z-index: -1;
-      word-spacing: -1px;
 
-    }
 
 
 
@@ -228,8 +216,6 @@
 
 
 
-  <!-- Countdown Timer -->
-  <div class="countdown" id="countdown"></div>
 
   <script>
     let previousDirection = '';
@@ -265,29 +251,7 @@
   }
 });
 
-    // Countdown Timer Functionality
-    function updateCountdown() {
-      const targetDate = new Date("April 18, 2025 00:00:00").getTime();
-      const now = new Date().getTime();
-      const timeDiff = targetDate - now;
-
-      if (timeDiff < 0) {
-        document.getElementById("countdown").innerHTML = "Countdown expired";
-        return;
-      }
-
-      const weeks = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 7));
-      const days = Math.floor((timeDiff % (1000 * 60 * 60 * 24 * 7)) / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
-
-      document.getElementById("countdown").innerHTML = 
-        `${weeks}w ${days}d ${hours}h ${minutes}m ${seconds}s`;
-    }
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
+   
   </script>
 </body>
 
