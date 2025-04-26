@@ -12,13 +12,8 @@
       font-weight: lighter;
     }
 
-    @font-face {
-      font-family: soehne;
-      src: url('soehne-web-buch.woff') format('opentype');
-      font-weight: lighter;
-    }
-
     body {
+      font: EpiceneDisplay;
       background-color: #dad3e5;
       display: flex;
       justify-content: center;
@@ -39,7 +34,7 @@
         background-color: #990011;
       }
       75% {
-        background-color: #cee7ef;
+        background-color: #301A89;
       }
       100% {
         background-color: #dad3e5;
@@ -65,7 +60,6 @@
     }
 
     #direction {
-      font: EpiceneDisplay;
       font-size: 25vh;
       margin-bottom: 20%;
       opacity: 0;
@@ -99,7 +93,6 @@
     }
 
     sup {
-      font: soehne;
       position: absolute;
       top: -0.8rem;
       right: -0.8rem;
@@ -141,7 +134,19 @@
 
     
 
+    /* Countdown Timer Styling */
+    .countdown {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      font-size: 3vw;
+      font: EpiceneDisplay;
+      color: #faf9f6;
+  
+      z-index: -1;
+      word-spacing: -1px;
 
+    }
 
 
 
@@ -216,6 +221,8 @@
 
 
 
+  <!-- Countdown Timer -->
+  <div class="countdown" id="countdown"></div>
 
   <script>
     let previousDirection = '';
@@ -251,7 +258,29 @@
   }
 });
 
-   
+    // Countdown Timer Functionality
+    function updateCountdown() {
+      const targetDate = new Date("April 26, 2025 18:00:00").getTime();
+      const now = new Date().getTime();
+      const timeDiff = targetDate - now;
+
+      if (timeDiff < 0) {
+        document.getElementById("countdown").innerHTML = "Countdown expired";
+        return;
+      }
+
+      const weeks = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 7));
+      const days = Math.floor((timeDiff % (1000 * 60 * 60 * 24 * 7)) / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML = 
+        `${weeks}w ${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
   </script>
 </body>
 
