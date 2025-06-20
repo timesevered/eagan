@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>countdown</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Oxygen', sans-serif;
+      background-color: #f6f5e8; /* Pantone Star White approximation */
+      color: #111;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 5vw;
+      margin-bottom: 5vw;
+    }
+
+    #countdown {
+      font-size: 6vw;
+      font-weight: bold;
+    }
+
+    .floating-text {
+      position: absolute;
+      top: 2vw;
+      right: -5vw;
+      font-size: 4vw; /* adjust size as needed */
+      animation: float 4s ease-in-out infinite;
+      z-index: 2;
+      color: #222;
+      /* Removed transform: none; so animation works smoothly */
+    }
+
+    .center-image {
+      position: absolute;
+      top: 12%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40vw;
+      max-width: 300px;
+      z-index: 1;
+    }
+
+    @keyframes float {
+      0% { transform: translate(-50%, 0); }
+      50% { transform: translate(-50%, -2vw); }
+      100% { transform: translate(-50%, 0); }
+    }
+
+    #direction-container,
+    .circle-container {
+      width: 100%;
+      max-width: 800px;
+      height: 30vh; /* reserve fixed vertical space */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    #direction {
+      font-size: 20vw;
+      position: absolute;
+      top: 5vh;
+      right: 10vw;
+      opacity: 0;  /* start invisible */
+      margin: 0;
+      text-align: center;
+      z-index: 5;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .circle {
+      background-color: transparent;
+      width: 6vh;
+      height: 6vh;
+      max-width: 5vh;
+      max-height: 5vh;
+      border-radius: 50%;
+      animation: breathe 4s infinite alternate;
+      box-shadow: 0 0 20px rgba(250, 249, 246, 0.5);
+    }
+
+    @keyframes breathe {
+      0% {
+        transform: scale(1);
+      }
+      100% {
+        transform: scale(2);
+      }
+    }
+
+    button {
+      display: none;
+    }
+
+    sup {
+      position: absolute;
+      top: -0.008rem;
+      right: -0.008rem;
+      background-color: transparent;
+      padding: 0;
+      border-radius: 50%;
+      font-size: 0.6rem;
+      color: black;
+      box-shadow: none;
+      line-height: 1;
+    }
+
+    .fade-in-text {
+      animation: fadeInText 0.3s forwards;
+      opacity: 1;  /* ensures it ends visible */
+    }
+
+    @keyframes fadeInText {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="direction-container">
+    <div id="direction"></div>
+  </div>
+  <div class="circle-container">
+    <div class="circle" onclick="generateDirection()"></div>
+  </div>
+
+  <div class="grid-container">
+    <div class="grid-item">Zaire—Kæli Vetement Kerttu \ Kärt Demna Oval Āki + Yumyulack Earth Axis </div>
+    <div class="grid-item">Knuck•e—Balenciaga Pendergast Oola Danuta Sever Time + Zøg Dioxide Bear 💘 Korvo Aquamarine, Oval Franchine Lamont & Greene Osiris</div> 
+    <div class="grid-item">Larry Ishtar—Venus Forevermore Blurry—Hills Caculon Ishtar(Larry—Axis, Lrr Klaus & Elzar Blueflower, Zennifer, Samus Aran & Honey Lemon Nakti, Odval Stan & Fry, Salvador & Anselmo, Scarlet Zoidberg)</div>
+    <div class="grid-item">Zebleer—Silicon Xylitol Rykkur Oona Makvala & Khiin Rust Sherry</div>
+    <div class="grid-item">Zephyr—Valerie \ Valley Božo Bellflower Ivory Draco x—22 + Moonlight Bender Kiin</div>
+    <div class="grid-item">Lotus + Bear—Lilac Khaleesi Amīna Rogu↔Truffle Növa + Avoine Raindrop Xxyyxx</div>
+  </div>
+
+  <div class="floating-text">EAGAN</div>
+  <h1>07042025 @ midnight</h1>
+  <div id="countdown"></div>
+
+  <script>
+    let previousDirection = '';
+    let directionCount = 2;
+
+    function generateDirection() {
+      const directions = ['↔', '↕'];
+      let randomIndex = Math.floor(Math.random() * directions.length);
+      let newDirection = directions[randomIndex];
+
+      let displayDirection;
+
+      if (newDirection === previousDirection) {
+        displayDirection = `${newDirection}<sup>${directionCount}</sup>`;
+        directionCount++;
+      } else {
+        displayDirection = newDirection;
+        previousDirection = newDirection;
+        directionCount = 2;
+      }
+
+      const directionElement = document.getElementById('direction');
+
+      // Remove fade-in animation and reset opacity for smooth restart
+      directionElement.classList.remove('fade-in-text');
+      directionElement.style.opacity = '0';
+
+      // Force reflow to restart animation properly
+      void directionElement.offsetWidth;
+
+      // Update content before animation
+      directionElement.innerHTML = displayDirection;
+
+      // Add fade-in class after a short delay
+      setTimeout(() => {
+        directionElement.classList.add('fade-in-text');
+      }, 50);
+    }
+
+    window.onload = generateDirection;
+
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        generateDirection();
+      }
+    });
+
+    function updateCountdown() {
+      const targetDate = new Date("2025-07-04T00:00:00").getTime();
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        document.getElementById("countdown").innerHTML = "It's time!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML =
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
