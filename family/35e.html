@@ -6,56 +6,51 @@
   <title>countdown</title>
   <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet" />
   <style>
-
-    @font-face {
-      font-family: EpiceneDisplay;
-      src: url('family/EpiceneDisplay-Light.otf') format('opentype');
-      font-weight: lighter;
-    }
-    
-      body {
+    body {
       margin: 0;
-      
+      font-family: 'Oxygen', sans-serif;
       background-color: #f6f5e8; /* Pantone Star White approximation */
-      color: black;
+      color: #111;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100vh;
-      min-height: 100vh;
       text-align: center;
       overflow: hidden;
-      overflow-x: hidden;
-      overflow-y: auto;
       position: relative;
     }
 
     h1 {
-      font-family: 'Oxygen', sans-serif;
       font-size: 5vw;
       margin-bottom: 5vw;
     }
 
     #countdown {
-      font-family: 'Oxygen', sans-serif;
       font-size: 6vw;
       font-weight: bold;
     }
 
     .floating-text {
-      font-family: 'Oxygen', sans-serif;
       position: absolute;
       top: 2vw;
       right: -5vw;
       font-size: 4vw; /* adjust size as needed */
       animation: float 4s ease-in-out infinite;
       z-index: 2;
-      color: black;
+      color: #222;
       /* Removed transform: none; so animation works smoothly */
     }
 
-  
+    .center-image {
+      position: absolute;
+      top: 12%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40vw;
+      max-width: 300px;
+      z-index: 1;
+    }
 
     @keyframes float {
       0% { transform: translate(-50%, 0); }
@@ -75,7 +70,6 @@
     }
 
     #direction {
-      font: EpiceneDisplay;
       font-size: 20vw;
       position: absolute;
       top: 5vh;
@@ -112,7 +106,6 @@
     }
 
     sup {
-      font-family: 'Oxygen', sans-serif;
       position: absolute;
       top: -0.008rem;
       right: -0.008rem;
@@ -154,13 +147,13 @@
     </div>
     <div class="grid-item">Dyson Glass Jane Saturnino Dagmar Knuck•e 💘 Balenciaga Pendergast Oola Danuta Sever Time + Zøg Dioxide Bear, Korvo Aquamarine + Oval Franchine Lamont & Greene Osiris
     </div> 
-    <div class="grid-item">Larry Ishtar 💘 Venus Kləopatra Caculon Ishtar, Larry—Axis, Lrr Klaus & Elzar Xanadu Blueflower, Leela + Oval Stem & Fry
+    <div class="grid-item">Larry Ishtar 💘 Venus Forevermore Blurry—Hills Caculon Ishtar, Larry—Axis, Lrr Klaus & Elzar Xanadu Blueflower, Leela + Oval Stem & Fry
     </div>
     <div class="grid-item">Zebleer Rick Apple Jonah Earl 💘 Silicon Xylitol Rykkur Oona Makvala, Khiin Rust Sherry & Salvador + Anselmo
     </div>
-    <div class="grid-item">Pax Frank Dwight Zephyr 💘 Valerie \ Valley Božo Bellflower Ivory Draco x—22 + Moonlight Bender Kiin  + Blurry—Hills Forevərmore, Odval Stan & Daundra
+    <div class="grid-item">Pax Frank Dwight Zephyr 💘 Valerie \ Valley Božo Bellflower Ivory Draco x—22 + Moonlight Bender Kiin, Odval Stan & Daundra
     </div>
-    <div class="grid-item">Lotus + Era Bear Frank Grimace Seth 💘 Zennifer + Samus Aran, Honey Lemon Nakti, Lilac Khaleesi Amīna Rogu↔Truffle Növa & Avoine Raindrop Xxyyxx
+    <div class="grid-item">Lotus + Era Bear Frank Grimace Seth 💘 Zennifer + Samus Aran, Honey Lemon, Lilac Khaleesi Amīna Rogu↔Truffle Növa & Avoine Raindrop Xxyyxx
     </div>
   </div>
 
@@ -173,7 +166,7 @@
     let directionCount = 2;
 
     function generateDirection() {
-      const directions = ['↔', '↔'];
+      const directions = ['↔', '↕'];
       let randomIndex = Math.floor(Math.random() * directions.length);
       let newDirection = directions[randomIndex];
 
