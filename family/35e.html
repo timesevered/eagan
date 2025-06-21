@@ -6,12 +6,18 @@
   <title>countdown</title>
   <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet" />
   <style>
+
+    @font-face {
+      font-family: EpiceneDisplay;
+      src: url('family/EpiceneDisplay-Light.otf') format('opentype');
+      font-weight: lighter;
+    }
     
       body {
       margin: 0;
-      font-family: 'Oxygen', sans-serif;
+      
       background-color: #f6f5e8; /* Pantone Star White approximation */
-      color: #111;
+      color: black;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -26,35 +32,30 @@
     }
 
     h1 {
+      font-family: 'Oxygen', sans-serif;
       font-size: 5vw;
       margin-bottom: 5vw;
     }
 
     #countdown {
+      font-family: 'Oxygen', sans-serif;
       font-size: 6vw;
       font-weight: bold;
     }
 
     .floating-text {
+      font-family: 'Oxygen', sans-serif;
       position: absolute;
       top: 2vw;
       right: -5vw;
       font-size: 4vw; /* adjust size as needed */
       animation: float 4s ease-in-out infinite;
       z-index: 2;
-      color: #222;
+      color: black;
       /* Removed transform: none; so animation works smoothly */
     }
 
-    .center-image {
-      position: absolute;
-      top: 12%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 40vw;
-      max-width: 300px;
-      z-index: 1;
-    }
+  
 
     @keyframes float {
       0% { transform: translate(-50%, 0); }
@@ -74,6 +75,7 @@
     }
 
     #direction {
+      font: EpiceneDisplay;
       font-size: 20vw;
       position: absolute;
       top: 5vh;
@@ -110,6 +112,7 @@
     }
 
     sup {
+      font-family: 'Oxygen', sans-serif;
       position: absolute;
       top: -0.008rem;
       right: -0.008rem;
@@ -170,7 +173,7 @@
     let directionCount = 2;
 
     function generateDirection() {
-      const directions = ['↔', '↕'];
+      const directions = ['↔', '↔'];
       let randomIndex = Math.floor(Math.random() * directions.length);
       let newDirection = directions[randomIndex];
 
