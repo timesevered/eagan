@@ -6,9 +6,15 @@
   <title>EAGAN</title>
   <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet" />
   <style>
+     @font-face {
+      font-family: EpiceneDisplay;
+      src: url('family/EpiceneDisplay-Light.otf') format('opentype');
+      font-weight: lighter;
+    }
+
     body {
       margin: 0;
-      font-family: 'Oxygen', sans-serif;
+    
       background-color: #f6f5e8; /* Pantone Star White approximation */
       color: black;
       display: flex;
@@ -23,12 +29,14 @@
 
     h1 {
       font-size: 5vw;
+      font-family: 'Oxygen', sans-serif;
       margin-bottom: 5vw;
     }
 
     #countdown {
       font-size: 6vw;
       font-weight: bold;
+      font-family: 'Oxygen', sans-serif;
     }
 
     .floating-text {
@@ -72,6 +80,7 @@
     #direction {
       font-size: 20vw;
       position: absolute;
+      font-family: EpiceneDisplay;
       top: 5vh;
       right: 10vw;
       opacity: 0;  /* start invisible */
